@@ -8,8 +8,8 @@ public enum EventType
     GAME_TIME,
 
     // fight sys
-    DO_DAMAGE,
-    TAKE_DAMAGE
+    AFTER_DAMAGE,   // 伤害已经发送事件
+    PRE_DAMAGE      // 将要造成伤害事件
 
 
 }

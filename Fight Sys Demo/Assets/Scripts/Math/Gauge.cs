@@ -9,17 +9,10 @@ public class Gauge
     private float _min_value;
 
 
-    public Gauge(float max = 1, float cur = -99999, float min = 0)
+    public Gauge(float max, float min)
     {
         maxValue = max;
-        if (cur == -99999)
-        {
-            curValue = max;
-        }
-        else
-        {
-            curValue = cur;
-        }
+        curValue = max;
         minValue = min;
     }
     public float maxValue
@@ -30,7 +23,7 @@ public class Gauge
         }
         set
         {
-            if (value < _min_value)
+            if (value >= _min_value)
             {
                 _max_value = value;
             }
@@ -48,15 +41,15 @@ public class Gauge
         }
         set
         {
-            if (value > _max_value)
+            if (value >= _max_value)
             {
                 _cur_value = _max_value;
-                Debug.Log("_cur_value is more than _max_value, set it as _max_value");
+                //Debug.Log("_cur_value is more than _max_value, set it as _max_value");
             }
-            else if (value < _min_value)
+            else if (value <= _min_value)
             {
                 _cur_value = _min_value;
-                Debug.Log("_cur_value is less than _max_value, set it as _min_value");
+                //Debug.Log("_cur_value is less than _max_value, set it as _min_value");
             }
             else
             {
@@ -72,7 +65,7 @@ public class Gauge
         }
         set
         {
-            if (value > _max_value)
+            if (value <= _max_value)
             {
                 _min_value = value;
             }

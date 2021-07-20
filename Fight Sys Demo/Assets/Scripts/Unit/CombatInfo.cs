@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CombatInfo
 {
-    public Gauge hp = new Gauge(1000);
+    public Gauge hp = new Gauge(1000, 0);
     public int luckPoint = 0;
     public int physicalATK = 100;
     public int physicalDef = 0;

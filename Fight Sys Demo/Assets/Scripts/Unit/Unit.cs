@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Unit : MonoBehaviour
 {
@@ -11,31 +12,29 @@ public class Unit : MonoBehaviour
     {
         unitInfo = new UnitInfo();
         combatInfo = new CombatInfo();
-        UnitPool.AddUnit(ref this.unitInfo);
-        EventCenter.AddListener<UnitInfo, UnitInfo, Damage>(EventType.TAKE_DAMAGE, TakeDamage);
-        EventCenter.AddListener<UnitInfo, UnitInfo, Damage>(EventType.DO_DAMAGE, DoDamage);
     }
 
-    private void OnDestroy()
+
+    private void Start()
     {
-        EventCenter.RemoveListener<UnitInfo, UnitInfo, Damage>(EventType.TAKE_DAMAGE, TakeDamage);
-        EventCenter.RemoveListener<UnitInfo, UnitInfo, Damage>(EventType.DO_DAMAGE, DoDamage);
+        UnitPool.AddUnit(this);
+        CreateHpBar();
     }
 
     // take the damage from other unit
-    public void TakeDamage(UnitInfo target, UnitInfo source, Damage damage)
+    public void PreDamage(UnitInfo target, UnitInfo source, Damage damage)
     {
         if (target.inGameId != unitInfo.inGameId)
         {
             return;
         }
         combatInfo.hp.curValue -= damage.value;
-        EventCenter.Broadcast(EventType.DO_DAMAGE, target, source, damage);
+        EventCenter.Broadcast(EventType.AFTER_DAMAGE, source, damage);
     }
 
 
     
-    public void DoDamage(UnitInfo target, UnitInfo source, Damage damage)
+    public void AfterDamage(UnitInfo target, UnitInfo source, Damage damage)
     {
         if (source.inGameId != unitInfo.inGameId)
         {
@@ -49,5 +48,12 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public void CreateHpBar()
+    {
+        string _path = "Assets/Prefabs/HpBar.prefab";
+        GameObject hp_bar_obj = AssetDatabase.LoadAssetAtPath(_path, typeof(GameObject)) as GameObject;
+        HpBar hp_bar = Instantiate(hp_bar_obj, GameObject.Find("Canvas").transform).GetComponent<HpBar>();
+        hp_bar.SetMaster(this);
+    }
 
 }

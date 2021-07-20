@@ -5,13 +5,18 @@ using System;
 
 public class UnitPool
 {
-    public static Dictionary<int, UnitInfo> unitPool = new Dictionary<int, UnitInfo>();
+    /// <summary>
+    /// Pool 是一个以 Unit 的 inGameId 为索引的 Dictionary，值如下：
+    /// Item1：UnitInfo
+    /// Item2：Gameobject
+    /// </summary>
+    public static Dictionary<int, Unit> unitPool = new Dictionary<int, Unit>();
     private static int unit_ingame_id = 10000;
 
-    public static void AddUnit(ref UnitInfo unit_info)
+    public static void AddUnit(Unit unit)
     {
-        unit_info.inGameId = unit_ingame_id;
-        unitPool[unit_ingame_id] = unit_info;
+        unit.unitInfo.inGameId = unit_ingame_id;
+        unitPool[unit_ingame_id] = unit;
         unit_ingame_id += 1;
 
     }
@@ -33,7 +38,7 @@ public class UnitPool
         string _str = "Unit Pool: ";
         foreach (int key in unitPool.Keys)
         {
-            _str += string.Format("\n{0} {1}", key, unitPool[key].name);
+            _str += string.Format("\n{0} {1}", key, unitPool[key].unitInfo.name);
         }
         return _str;
     }

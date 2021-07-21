@@ -5,16 +5,15 @@ using UnityEngine;
 public class Bullet2Target : Bullet
 {
     public Damage damage = new Damage(DamageType.PHYSICS, 10);
-    public UnitInfo target;
     public float speed = 1;
     private void OnTriggerEnter(Collider other)
     {
         Unit unit = other.gameObject.GetComponent<Unit>();
-        if (unit.unitInfo.inGameId != target.inGameId)
+        if (unit.inGameId != targetId)
         {
             return;
         }
-        unit.PreDamage(unit.unitInfo, masterInfo, damage);
+        DoDamage(unit, damage);
         Destroy(gameObject);
     }
 
@@ -25,7 +24,7 @@ public class Bullet2Target : Bullet
 
     void MoveToTarget()
     {
-        Unit unit = UnitPool.unitPool[target.inGameId];
+        Unit unit = UnitPool.Instance.unitPool[targetId];
         rb.velocity = (unit.transform.position - transform.position).normalized * speed;
     }
 

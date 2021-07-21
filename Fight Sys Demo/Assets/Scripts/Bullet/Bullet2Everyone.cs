@@ -9,7 +9,7 @@ public class Bullet2Everyone : Bullet
     private void OnTriggerEnter(Collider other)
     {
         Unit unit = other.gameObject.GetComponent<Unit>();
-        unit.PreDamage(unit.unitInfo, masterInfo, damage);
+        DoDamage(unit, damage);
     }
 
 }

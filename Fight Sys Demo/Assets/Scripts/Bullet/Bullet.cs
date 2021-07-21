@@ -7,12 +7,14 @@ using System;
 [RequireComponent(typeof(SphereCollider), typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
-    public SphereCollider coll;
-    public Rigidbody rb;
+    protected SphereCollider coll;
+    protected Rigidbody rb;
 
-    public BulletType bulletType = BulletType.ONLY_TO_TARGET;
+    protected BulletType bulletType = BulletType.ONLY_TO_TARGET;
+
     public int targetId = 0;
-    public UnitInfo masterInfo = new UnitInfo();
+    public int masterId;
+
 
 
     private void Awake()
@@ -23,37 +25,13 @@ public class Bullet : MonoBehaviour
         rb.useGravity = false;
     }
 
-
-    private void OnTriggerEnter(Collider collision)
+    public void DoDamage(Unit target, Damage damage)
     {
-        ////Debug.Log(collision.gameObject);
-        //Unit unit = collision.gameObject.GetComponent<Unit>();
-        //UnitInfo _unit_info = unit.unitInfo;
-        //int _unit_id = _unit_info.inGameId;
-        //int _unit_camp = _unit_info.campId;
-
-        //if (this.bulletType == BulletType.ONLY_TO_TARGET && _unit_id == targetId)
-        //{
-        //    OnHit.Invoke(_unit_info);
-        //    Destroy(gameObject);
-        //}
-        //if (this.bulletType == BulletType.ALL_ENEMY && _unit_camp != masterInfo.campId)
-        //{
-        //    OnHit.Invoke(_unit_info);
-        //}
-        //if (this.bulletType == BulletType.ALL_FRIEND_AND_ME && _unit_camp == masterInfo.campId)
-        //{
-        //    OnHit.Invoke(_unit_info);
-        //}
-        //if (this.bulletType == BulletType.ALL_FRIEND_BUT_ME && _unit_camp == masterInfo.campId && _unit_id != masterInfo.inGameId)
-        //{
-        //    OnHit.Invoke(_unit_info);
-        //}
-        //if (this.bulletType == BulletType.EVERYONE)
-        //{
-        //    OnHit.Invoke(_unit_info);
-        //}
+        damage.sourceId = masterId;
+        damage.targetId = target.inGameId;
+        target.OnDamageIn(damage);
     }
+    
 
 
 }

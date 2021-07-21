@@ -15,6 +15,7 @@ public class PrintUnitPoolInfo : MonoBehaviour
 
     private void FixedUpdate()
     {
-        text.text = UnitPool.FormatUnitInfo();
+        text.text = UnitPool.Instance.FormatUnitInfo();
+
     }
 }

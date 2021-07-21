@@ -45,8 +45,8 @@ public class HpBar : MonoBehaviour
 
     void SetValue()
     {
-        float _value = master.combatInfo.hp.curValue / master.combatInfo.hp.maxValue;
-        text.text = master.combatInfo.hp.curValue.ToString();
+        float _value = master.curHp / master.maxHp;
+        text.text = master.curHp.ToString();
         slider.value = _value;
     }
 

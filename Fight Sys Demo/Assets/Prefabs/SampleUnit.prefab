@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 2561322803682642667}
   - component: {fileID: 2047740261705811531}
   - component: {fileID: -1856617566704754471}
-  - component: {fileID: 4265135991392966978}
+  - component: {fileID: -5503423791054859751}
   m_Layer: 0
   m_Name: SampleUnit
   m_TagString: Untagged
@@ -192,7 +192,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.490484, z: 1}
   m_Center: {x: 0, y: 0.24524212, z: 0}
---- !u!114 &4265135991392966978
+--- !u!114 &-5503423791054859751
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,6 +201,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7807262540179115005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecc9774dc63eebe4382d9736104a7279, type: 3}
+  m_Script: {fileID: 11500000, guid: 9051141adfbbec341947a69d4c4ff9f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitStatus_SO: {fileID: 11400000, guid: 19cb16d3c1ebe00419ad8fe73ebefddc, type: 2}
+  unitInfo_SO: {fileID: 11400000, guid: a9c36d5f84098c34687a55b4d732b3c0, type: 2}
+  inGameId: 0
+  campId: 0
+  masterId: 0
+  playerId: 0

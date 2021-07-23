@@ -30,12 +30,14 @@ public class Unit : MonoBehaviour
     [HideInInspector]
     public int playerId = 0;
     #endregion
-    #region Unit Status
-    public UnitStatus_SO unitStatus_SO;
+    #region Unit Property
+    public UnitProperty_SO unitProperty_SO;
+    // 状态
+    [HideInInspector]
+    public UnitStatus unitStatus = UnitStatus.OUT_GAME;
 
     // Hp
-
-    public float maxHp { get { return unitStatus_SO.basicMaxHp; } }
+    public float maxHp { get { return unitProperty_SO.basicMaxHp; } }
     
     private float _cur_hp = -1;
     public float curHp
@@ -66,12 +68,12 @@ public class Unit : MonoBehaviour
     }
 
     // 物理攻击/防御
-    public float physicalAtk { get { return unitStatus_SO.basicPhysicalAtk; } }
-    public float physicalDef { get { return unitStatus_SO.basicPhysicalDef; } }
+    public float physicalAtk { get { return unitProperty_SO.basicPhysicalAtk; } }
+    public float physicalDef { get { return unitProperty_SO.basicPhysicalDef; } }
 
     // 攻速
-    public float atkSpeed { get { return unitStatus_SO.basicAtkSpeed; } }
-    public int atkInterval { get { return unitStatus_SO.basicAtkInterval; } }
+    public float atkSpeed { get { return unitProperty_SO.basicAtkSpeed; } }
+    public int atkInterval { get { return unitProperty_SO.basicAtkInterval; } }
 
 
     // 护盾
@@ -79,11 +81,8 @@ public class Unit : MonoBehaviour
 
 
     // 幸运值
-    public int luckPoint { get { return unitStatus_SO.basicLuckPoint; } }
+    public int luckPoint { get { return unitProperty_SO.basicLuckPoint; } }
     #endregion
-
-
-
 
 
     private void Awake()
@@ -95,19 +94,40 @@ public class Unit : MonoBehaviour
     private void Start()
     {
         EventCenter.Broadcast(EventType.ADD_UNIT, this);
+        unitStatus = UnitStatus.ALIVE;
         CreateHpBar();
     }
 
+    private void FixedUpdate()
+    {
+        if (unitStatus == UnitStatus.DEAD)
+        {
+            gameObject.SetActive(false);
+        }
+    }
     // 受到伤害的时候
     public void OnDamageIn(Damage damage)
     {
-        if (damage.targetId != inGameId)
+        switch (unitStatus)
         {
-            return;
+            case UnitStatus.OUT_GAME:
+                return;
+            case UnitStatus.ALIVE:
+                break;
+            case UnitStatus.DEAD:
+                return;
+            default:
+                break;
         }
+        damage.targetId = inGameId;
         curHp -= damage.preValue;
         UnitPool.Instance.unitPool[damage.sourceId].OnDamageDone(damage);
-        EventCenter.Broadcast(EventType.DAMAGE_DONE, damage);
+        if (curHp < 0.0001f)
+        {
+            unitStatus = UnitStatus.DEAD;
+            //EventCenter.Broadcast(I dead);
+        }
+        //EventCenter.Broadcast(EventType.DAMAGE_DONE, damage);
     }
 
     // 已经给别人造成伤害的时候
@@ -129,7 +149,7 @@ public class Unit : MonoBehaviour
     // 生成可视的血条
     public void CreateHpBar()
     {
-        string _path = "Assets/Prefabs/HpBar.prefab";
+        string _path = "Assets/Prefabs/UI/HpBar.prefab";
         GameObject hp_bar_obj = AssetDatabase.LoadAssetAtPath(_path, typeof(GameObject)) as GameObject;
         HpBar hp_bar = Instantiate(hp_bar_obj, GameObject.Find("Canvas").transform).GetComponent<HpBar>();
         hp_bar.SetMaster(this);

@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Data", menuName = "Data/Combat Info")]
-public class UnitStatus_SO : ScriptableObject
+[CreateAssetMenu(fileName = "New Unit Status", menuName = "Data/Unit Status")]
+public class UnitProperty_SO : ScriptableObject
 {
     [Header("Hp")]
     public float basicMaxHp = 1000;

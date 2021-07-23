@@ -204,9 +204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9051141adfbbec341947a69d4c4ff9f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitStatus_SO: {fileID: 11400000, guid: 19cb16d3c1ebe00419ad8fe73ebefddc, type: 2}
   unitInfo_SO: {fileID: 11400000, guid: a9c36d5f84098c34687a55b4d732b3c0, type: 2}
   inGameId: 0
   campId: 0
   masterId: 0
   playerId: 0
+  unitProperty_SO: {fileID: 11400000, guid: 19cb16d3c1ebe00419ad8fe73ebefddc, type: 2}
+  unitStatus: 0

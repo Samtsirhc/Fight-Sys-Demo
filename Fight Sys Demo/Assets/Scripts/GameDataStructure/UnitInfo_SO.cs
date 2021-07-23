@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Data", menuName = "Data/Unit Info")]
+[CreateAssetMenu(fileName = "New Unit Info", menuName = "Data/Unit Info")]
 public class UnitInfo_SO : ScriptableObject
 {
     [Header("Static Info")]

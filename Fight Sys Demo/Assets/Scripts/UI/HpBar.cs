@@ -45,6 +45,14 @@ public class HpBar : MonoBehaviour
 
     void SetValue()
     {
+        if (master.unitStatus != UnitStatus.ALIVE)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
         float _value = master.curHp / master.maxHp;
         text.text = master.curHp.ToString();
         slider.value = _value;

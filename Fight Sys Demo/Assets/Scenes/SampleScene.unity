@@ -409,11 +409,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 432023296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2991e8aba23f691419aba23d34b8d52e, type: 3}
+  m_Script: {fileID: 11500000, guid: 59d8b226a6600b941a5cbb2fc145e15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7431967849376599055, guid: 6793f78d16c6f4148a4d32e71a1520dc, type: 3}
-  cooldown: 1
+  master: {fileID: 0}
+  weaponObj: {fileID: 7079271019162508913, guid: 2b80b70c14544a54595cb1ad7af17538, type: 3}
 --- !u!1001 &495645730
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -15,6 +15,11 @@ public class UnitPool : MonoBehaviour
     public Dictionary<int, Unit> unitPool = new Dictionary<int, Unit>();
     private int unit_ingame_id = 10000;
 
+
+    public static Unit Get(int unit_id)
+    {
+        return Instance.unitPool[unit_id];
+    }
     private void Awake()
     {
         if (Instance != null)

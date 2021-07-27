@@ -48,4 +48,46 @@ public class BasicMath
         return radius *(Mathf.Sin(_theta) * _y + Mathf.Cos(_theta) * _x);
     }
 
+    public static List<float> ExpbandList(List<float> my_list, int count)
+    {
+        List<float> _list = new List<float>();
+        if (my_list == null || my_list.Count == 0)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                _list.Add(0);
+            }
+        }
+        else if (my_list.Count == 1)
+        {
+            float _value = my_list[0];
+            for (int i = 0; i < count; i++)
+            {
+                _list.Add(_value);
+            }
+        }
+        else if (my_list.Count <= count)
+        {
+            float _value = my_list[my_list.Count - 1] - my_list[my_list.Count - 2];
+            for (int i = 0; i < my_list.Count; i++)
+            {
+                _list.Add(my_list[i]);
+            }
+            for (int i = 0; i < count - my_list.Count; i++)
+            {
+                _list.Add(my_list[my_list.Count - 1] + _value * (i + 1));
+            }
+        }
+        else
+        {
+            _list = my_list;
+        }
+        return _list;
+    }
+
+    public static float GetCircumHexagonSize(float circle_d)
+    {
+        return circle_d / 1.73205f;
+    }
+
 }

@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 849680007
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: bullets.prefab
+      Dependencies: {}
+    Info_1:
+      Name: ui.prefab
+      Dependencies: {}
+    Info_2:
+      Name: unit.prefab
+      Dependencies: {}
+    Info_3:
+      Name: weapon.prefab
+      Dependencies:
+        Dependency_0: bullets.prefab

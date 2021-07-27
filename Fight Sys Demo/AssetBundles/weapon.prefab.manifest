@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 3798454010
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 39de4cb9c56e4dc64938a4442c57cc5a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: e87b8afa9055c2a6d7d80f065d4bd3f1
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 72cfccaff514680428adb1caf96fc4d5, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/Weapons/SampleWeapon.prefab
+Dependencies:
+- C:/Users/Samtsirhc/Desktop/Fight-Sys-Demo/Fight Sys Demo/AssetBundles/bullets.prefab
